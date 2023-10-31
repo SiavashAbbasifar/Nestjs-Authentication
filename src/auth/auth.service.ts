@@ -14,7 +14,7 @@ export class AuthService {
     @InjectModel(User.name)
     private userModel: Model<User>,
     private jwtService: JwtService,
-    private configService: ConfigService
+   // private configService: ConfigService
   ) {}
 
   async signUp(signUpDTO:SignUpDTO):Promise<{token:String}> {
