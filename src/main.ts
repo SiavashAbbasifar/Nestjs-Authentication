@@ -6,6 +6,7 @@ import {
   SwaggerCustomOptions,
 } from '@nestjs/swagger';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import * as dotenv from 'dotenv'; // Import dotenv
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -33,6 +34,7 @@ async function bootstrap() {
   app.enableVersioning({
     type:VersioningType.URI
   });
+  dotenv.config();
   await app.listen(4000);
 }
 bootstrap();

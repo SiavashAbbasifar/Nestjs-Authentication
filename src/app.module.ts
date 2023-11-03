@@ -8,13 +8,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { CommonModule } from 'src/common/jwtcommon.module';
 import { Mongoose } from 'mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BookModule } from './book/book.module';
 
 
 
 @Module({
   imports: [
     MongooseModule.forRoot("mongodb://127.0.0.1:27017/"),
-    AuthModule,CommonModule,],
+    AuthModule,CommonModule, BookModule,],
   //controllers: [AppController, AuthController],
   providers: [],
   
