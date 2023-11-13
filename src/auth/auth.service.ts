@@ -17,7 +17,7 @@ export class AuthService {
    // private configService: ConfigService
   ) {}
 
-  async signUp(signUpDTO:SignUpDTO):Promise<{token:String}> {
+  async signUp(signUpDTO:SignUpDTO):Promise<{token:String,message:String}> {
     const { name, email, password } = signUpDTO;
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -29,10 +29,11 @@ export class AuthService {
     const token = this.jwtService.sign({
       id: user._id,
     });
-    return { token };
+    const message = 'Account created successfully';
+    return { message,token };
   }
 
-  async login(loginDTO:LoginDTO):Promise<{token:String}>{
+  async login(loginDTO:LoginDTO):Promise<{token:String,message:String}>{
     const {email,password} =loginDTO;
     const user= await this.userModel.findOne({email})
     if(!user){
@@ -47,7 +48,8 @@ export class AuthService {
     const token = this.jwtService.sign({
       id: user._id,
     });
-    return { token };
+    const message = 'Logged in successfully';
+    return { message,token };
   }
 
 }
